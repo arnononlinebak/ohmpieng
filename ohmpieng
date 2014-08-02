@@ -2,22 +2,57 @@ server {
     listen  80;
     server_name ohmpieng.org www.ohmpieng.org;
     root  /home/ohmpieng/www/production/;
+    index index.html index.php;
+
     location / {
-        index index.html index.php;
-        location ~ \.php$ {
-            try_files      $uri = 404;
-            fastcgi_pass   127.0.0.1:9000;
-            fastcgi_index  index.php;
-            fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
-            include        fastcgi_params;
-        }
-        #autoindex on;
+        try_files $uri $uri/ /index.php;
+    }    
+    location /blog {
+       try_files $uri $uri/ /blog/index.php?$args;
     }
+
+    location ~ \.php$ {
+        try_files      $uri = 404;
+        fastcgi_pass   127.0.0.1:9000;
+        fastcgi_index  index.php;
+        fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include        fastcgi_params;
+        
+        fastcgi_intercept_errors on;
+    }
+
+    location = /favicon.ico {
+        log_not_found off;
+        access_log off;
+    }
+
+    location = /robots.txt {
+        allow all;
+        log_not_found off;
+        access_log off;
+    }
+   
+    location ~* \.(ico|css|js|gif|jpe?g|png)(\?[0-9]+)?$ {
+        expires max;
+        log_not_found off;
+    }
+
+#    location / {
+#        index index.html index.php;
+#        location ~ \.php$ {
+#            try_files      $uri = 404;
+#            fastcgi_pass   127.0.0.1:9000;
+#            fastcgi_index  index.php;
+#            fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
+#            include        fastcgi_params;
+#        }
+#        #autoindex on;
+#    }
+
     error_page  404 /404.html;
     error_page  403 /403.html;
     access_log  /home/ohmpieng/logs/ohmpieng.org.access.log  combined;
 }
-
 
 server {
     listen  80;

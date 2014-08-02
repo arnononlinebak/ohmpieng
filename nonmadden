@@ -33,7 +33,7 @@ server {
 #    root  /home/ohmpieng/www/nonmadden/;
 #    #autoindex on;
 #    index index.html index.php;    
- 
+#
 #    location / {
 #        try_files $uri $uri/ /index.php;
 #    }    
@@ -50,23 +50,23 @@ server {
 #        
 #        fastcgi_intercept_errors on;
 #    }
-
+#
 #    location = /favicon.ico {
 #        log_not_found off;
 #        access_log off;
 #    }
-
+#
 #    location = /robots.txt {
 #        allow all;
 #        log_not_found off;
 #        access_log off;
 #    }
-    
+#   
 #    location ~* \.(ico|css|js|gif|jpe?g|png)(\?[0-9]+)?$ {
 #        expires max;
 #        log_not_found off;
 #    }
-
+#
 #    error_page  404 /error;
 #    error_page  403 /error;
 #    access_log  /home/ohmpieng/logs/nonmadden.com.access.log  combined;
@@ -106,4 +106,3 @@ server {
     error_page  403 /error;
     access_log  /home/ohmpieng/logs/nonmadden.com.access.log  combined;
 }
-
