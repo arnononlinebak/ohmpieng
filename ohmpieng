@@ -1,5 +1,6 @@
 server {
     listen  80;
+    listen  443;
     server_name ohmpieng.org www.ohmpieng.org;
     root  /home/ohmpieng/www/production/;
     index index.html index.php;
@@ -52,6 +53,10 @@ server {
     error_page  404 /404.html;
     error_page  403 /403.html;
     access_log  /home/ohmpieng/logs/ohmpieng.org.access.log  combined;
+
+    ssl                  on;
+    ssl_certificate      /etc/nginx/ssl/server.crt;
+    ssl_certificate_key  /etc/nginx/ssl/server.key;
 }
 
 server {
