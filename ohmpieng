@@ -4,19 +4,12 @@ server {
   server_name ohmpieng.org www.ohmpieng.org;
   root  /home/ohmpieng/www/production/;
   index index.html index.php;
+  include php-fpm;
   location / {
     try_files $uri $uri/ /index.php;
   }
   location /blog {
     try_files $uri $uri/ /blog/index.php?$args;
-  }
-  location ~ \.php$ {
-    try_files      $uri = 404;
-    fastcgi_pass   127.0.0.1:9000;
-    fastcgi_index  index.php;
-    fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
-    include        fastcgi_params;
-    fastcgi_intercept_errors on;
   }
   location = /favicon.ico {
     log_not_found off;
@@ -45,13 +38,7 @@ server {
   root  /home/ohmpieng/www/live/;
   location / {
     index index.html index.php;
-    location ~ \.php$ {
-      try_files      $uri = 404;
-      fastcgi_pass   127.0.0.1:9000;
-      fastcgi_index  index.php;
-      fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
-      include        fastcgi_params;
-    }
+    include php-fpm;
   }
   error_page  404 /404.html;
   error_page  403 /403.html;
@@ -64,13 +51,7 @@ server {
   root  /home/ohmpieng/www/applications/;
   location / {
     index index.html index.php;
-    location ~ \.php$ {
-      try_files      $uri = 404;
-      fastcgi_pass   127.0.0.1:9000;
-      fastcgi_index  index.php;
-      fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
-      include        fastcgi_params;
-    }
+    include php-fpm;
     access_log        off;
     expires           0;
     add_header        Cache-Control private;
@@ -87,16 +68,8 @@ server {
   location / {
     index index.html index.php;
     autoindex on;
-    location ~ \.php$ {
-      try_files      $uri = 404;
-      fastcgi_pass   127.0.0.1:9000;
-      fastcgi_index  index.php;
-      fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
-      include        fastcgi_params;
-    }
+    include php-fpm;
   }
-  error_page  404 /404.html;
-  error_page  403 /403.html;
   access_log  /home/ohmpieng/logs/cloud.nonmadden.com.access.log  combined;
 }
 
@@ -109,14 +82,6 @@ server {
     auth_basic_user_file /home/ohmpieng/linux-dash/.htpasswd;
     index index.php index.html;
     autoindex on;
-    location ~ \.php$ {
-      try_files      $uri = 404;
-      fastcgi_pass   127.0.0.1:9000;
-      fastcgi_index  index.php;
-      fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
-      include        fastcgi_params;
-    }
+    include php-fpm;
   }
-  error_page  404 /404.html;
-  error_page  403 /403.html;
 }
