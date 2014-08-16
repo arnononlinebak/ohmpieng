@@ -1,21 +1,11 @@
-autoindex off;
 
 server {
   listen  80;
   server_name  128.199.255.103;
   root  /home/ohmpieng/;
   access_log  /home/ohmpieng/logs/default.access.log  combined;
-  location / {
-    location ~ \.php$ {
-      try_files      $uri = 404;
-      fastcgi_pass   127.0.0.1:9000;
-      fastcgi_index  index.php;
-      fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
-      include        fastcgi_params;
-    }
-  }
-  error_page  404     /404.html;
-  error_page  403     /403.html;
+  include php-fpm;
+  index index.html index.php;
 }
 
 server {
@@ -27,19 +17,10 @@ server {
   listen  80;
   server_name get.nonmadden.com;
   root  /home/non/nonmadden/;
-
-
+  include php-fpm;
   index index.html index.php;
   location / {
     try_files $uri $uri/ /index.php?$args;
-  }
-  location ~ \.php$ {
-    try_files      $uri = 404;
-    fastcgi_pass   127.0.0.1:9000;
-    fastcgi_index  index.php;
-    fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
-    include        fastcgi_params;
-    fastcgi_intercept_errors on;
   }
   location = /favicon.ico {
     log_not_found off;
@@ -54,7 +35,5 @@ server {
     expires max;
     log_not_found off;
   }
-  error_page  404 /error;
-  error_page  403 /error;
   access_log  /home/ohmpieng/logs/nonmadden.com.access.log  combined;
 }

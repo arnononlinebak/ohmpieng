@@ -1,6 +1,7 @@
-
-include /home/non/config/nonmadden;
-include /home/non/config/ohmpieng;
+autoindex off;
 
 error_page  404 /404.html;
 error_page  403 /403.html;
+
+include /home/non/config/nonmadden;
+include /home/non/config/ohmpieng;
