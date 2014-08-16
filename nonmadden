@@ -17,91 +17,53 @@ server {
     error_page  403     /403.html;
 }
 
-server {
-    server_name "~^(?!www\.).*" ;
-    return 301 $scheme://blog.nonmadden.com$request_uri;
-}
-
-server {
-  server_name ~^(.*)\.nonmadden\.com$ ;
-  rewrite ^ http://blog.nonmadden.com/ redirect;
-}
+#server {
+#    server_name "~^(?!www\.).*" ;
+#    return 301 $scheme://get.nonmadden.com$request_uri;
+#}
 
 #server {
-#    listen  80;
-#    server_name get.nonmadden.com;
-#    root  /home/ohmpieng/www/nonmadden/;
-#    #autoindex on;
-#    index index.html index.php;    
-#
-#    location / {
-#        try_files $uri $uri/ /index.php;
-#    }    
-#    location /blog {
-#	    try_files $uri $uri/ /blog/index.php?$args;
-#    }
-#
-#    location ~ \.php$ {
-#        try_files      $uri = 404;
-#        fastcgi_pass   127.0.0.1:9000;
-#        fastcgi_index  index.php;
-#        fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
-#        include        fastcgi_params;
-#        
-#        fastcgi_intercept_errors on;
-#    }
-#
-#    location = /favicon.ico {
-#        log_not_found off;
-#        access_log off;
-#    }
-#
-#    location = /robots.txt {
-#        allow all;
-#        log_not_found off;
-#        access_log off;
-#    }
-#   
-#    location ~* \.(ico|css|js|gif|jpe?g|png)(\?[0-9]+)?$ {
-#        expires max;
-#        log_not_found off;
-#    }
-#
-#    error_page  404 /error;
-#    error_page  403 /error;
-#    access_log  /home/ohmpieng/logs/nonmadden.com.access.log  combined;
+#  server_name ~^(.*)\.nonmadden\.com$ ;
+#  rewrite ^ http://get.nonmadden.com/ redirect;
 #}
 
 server {
-    listen 80;
-    server_name blog.nonmadden.com;
-    root /home/ohmpieng/www/nonmadden/blog/;
-    index index.html index.php;
+    listen  80;
+    server_name get.nonmadden.com;
+    root  /home/non/nonmadden/;
+    #autoindex on;
+    index index.html index.php;    
+
     location / {
-	try_files $uri $uri/ /blog/index.php?$args;
+      try_files $uri $uri/ /index.php?$args;
     }
+
     location ~ \.php$ {
         try_files      $uri = 404;
         fastcgi_pass   127.0.0.1:9000;
         fastcgi_index  index.php;
         fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        include        fastcgi_params; 
+        include        fastcgi_params;
         
         fastcgi_intercept_errors on;
-    }   
+    }
+
     location = /favicon.ico {
         log_not_found off;
         access_log off;
-    }   
+    }
+
     location = /robots.txt {
         allow all;
         log_not_found off;
         access_log off;
     }
+   
     location ~* \.(ico|css|js|gif|jpe?g|png)(\?[0-9]+)?$ {
         expires max;
         log_not_found off;
-    }   
+    }
+
     error_page  404 /error;
     error_page  403 /error;
     access_log  /home/ohmpieng/logs/nonmadden.com.access.log  combined;
