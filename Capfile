@@ -7,4 +7,4 @@ set :deploy_to, "/home/non/config"
 set :user, 'non'
 server 'ohmpieng.org', :app
 
-run 'sudo service nginx restart'
+run 'sudo service nginx reload'
