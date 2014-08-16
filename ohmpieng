@@ -4,7 +4,7 @@ server {
   server_name ohmpieng.org www.ohmpieng.org;
   root  /home/ohmpieng/www/production/;
   index index.html index.php;
-  include php-fpm;
+  include /home/non/config/php-fpm;
   location / {
     try_files $uri $uri/ /index.php;
   }
@@ -38,7 +38,7 @@ server {
   root  /home/ohmpieng/www/live/;
   location / {
     index index.html index.php;
-    include php-fpm;
+    include /home/non/config/php-fpm;
   }
   error_page  404 /404.html;
   error_page  403 /403.html;
@@ -51,7 +51,7 @@ server {
   root  /home/ohmpieng/www/applications/;
   location / {
     index index.html index.php;
-    include php-fpm;
+    include /home/non/config/php-fpm;
     access_log        off;
     expires           0;
     add_header        Cache-Control private;
@@ -68,7 +68,7 @@ server {
   location / {
     index index.html index.php;
     autoindex on;
-    include php-fpm;
+    include /home/non/config/php-fpm;
   }
   access_log  /home/ohmpieng/logs/cloud.nonmadden.com.access.log  combined;
 }
@@ -82,6 +82,6 @@ server {
     auth_basic_user_file /home/ohmpieng/linux-dash/.htpasswd;
     index index.php index.html;
     autoindex on;
-    include php-fpm;
+    include /home/non/config/php-fpm;
   }
 }
