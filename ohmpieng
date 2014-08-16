@@ -1,164 +1,122 @@
 server {
-    listen  80;
-    listen  443;
-    server_name ohmpieng.org www.ohmpieng.org;
-    root  /home/ohmpieng/www/production/;
+  listen  80;
+  listen  443;
+  server_name ohmpieng.org www.ohmpieng.org;
+  root  /home/ohmpieng/www/production/;
+  index index.html index.php;
+  location / {
+    try_files $uri $uri/ /index.php;
+  }
+  location /blog {
+    try_files $uri $uri/ /blog/index.php?$args;
+  }
+  location ~ \.php$ {
+    try_files      $uri = 404;
+    fastcgi_pass   127.0.0.1:9000;
+    fastcgi_index  index.php;
+    fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    include        fastcgi_params;
+    fastcgi_intercept_errors on;
+  }
+  location = /favicon.ico {
+    log_not_found off;
+    access_log off;
+  }
+  location = /robots.txt {
+    allow all;
+    log_not_found off;
+    access_log off;
+  }
+  location ~* \.(ico|css|js|gif|jpe?g|png)(\?[0-9]+)?$ {
+    expires max;
+    log_not_found off;
+  }
+  error_page  404 /404.html;
+  error_page  403 /403.html;
+  access_log  /home/ohmpieng/logs/ohmpieng.org.access.log  combined;
+  ssl                  on;
+  ssl_certificate      /etc/nginx/ssl/server.crt;
+  ssl_certificate_key  /etc/nginx/ssl/server.key;
+}
+
+server {
+  listen  80;
+  server_name live.ohmpieng.org;
+  root  /home/ohmpieng/www/live/;
+  location / {
     index index.html index.php;
-
-    location / {
-        try_files $uri $uri/ /index.php;
-    }    
-    location /blog {
-       try_files $uri $uri/ /blog/index.php?$args;
-    }
-
     location ~ \.php$ {
-        try_files      $uri = 404;
-        fastcgi_pass   127.0.0.1:9000;
-        fastcgi_index  index.php;
-        fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        include        fastcgi_params;
-        
-        fastcgi_intercept_errors on;
+      try_files      $uri = 404;
+      fastcgi_pass   127.0.0.1:9000;
+      fastcgi_index  index.php;
+      fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
+      include        fastcgi_params;
     }
-
-    location = /favicon.ico {
-        log_not_found off;
-        access_log off;
-    }
-
-    location = /robots.txt {
-        allow all;
-        log_not_found off;
-        access_log off;
-    }
-   
-    location ~* \.(ico|css|js|gif|jpe?g|png)(\?[0-9]+)?$ {
-        expires max;
-        log_not_found off;
-    }
-
-#    location / {
-#        index index.html index.php;
-#        location ~ \.php$ {
-#            try_files      $uri = 404;
-#            fastcgi_pass   127.0.0.1:9000;
-#            fastcgi_index  index.php;
-#            fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
-#            include        fastcgi_params;
-#        }
-#        #autoindex on;
-#    }
-
-    error_page  404 /404.html;
-    error_page  403 /403.html;
-    access_log  /home/ohmpieng/logs/ohmpieng.org.access.log  combined;
-
-    ssl                  on;
-    ssl_certificate      /etc/nginx/ssl/server.crt;
-    ssl_certificate_key  /etc/nginx/ssl/server.key;
+  }
+  error_page  404 /404.html;
+  error_page  403 /403.html;
+  access_log  /home/ohmpieng/logs/live.ohmpieng.org.access.log  combined;
 }
 
 server {
-    listen  80;
-    server_name live.ohmpieng.org;
-    root  /home/ohmpieng/www/live/;
-    location / {
-        index index.html index.php;
-        location ~ \.php$ {
-            try_files      $uri = 404;
-            fastcgi_pass   127.0.0.1:9000;
-            fastcgi_index  index.php;
-            fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
-            include        fastcgi_params;
-        }
-        #autoindex on;
+  listen  80;
+  server_name apps.ohmpieng.org;
+  root  /home/ohmpieng/www/applications/;
+  location / {
+    index index.html index.php;
+    location ~ \.php$ {
+      try_files      $uri = 404;
+      fastcgi_pass   127.0.0.1:9000;
+      fastcgi_index  index.php;
+      fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
+      include        fastcgi_params;
     }
-    error_page  404 /404.html;
-    error_page  403 /403.html;
-    access_log  /home/ohmpieng/logs/live.ohmpieng.org.access.log  combined;
+    access_log        off;
+    expires           0;
+    add_header        Cache-Control private;
+  }
+  error_page  404 /404.html;
+  error_page  403 /403.html;
+  access_log  /home/ohmpieng/logs/apps.nonmadden.org.access.log  combined;
 }
 
 server {
-    listen  80;
-    server_name apps.ohmpieng.org;
-    root  /home/ohmpieng/www/applications/;
-    location / {
-        index index.html index.php;
-        location ~ \.php$ {
-            try_files      $uri = 404;
-            fastcgi_pass   127.0.0.1:9000;
-            fastcgi_index  index.php;
-            fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
-            include        fastcgi_params;
-        }
-        
-	    access_log        off;
-	    expires           0;
-	    add_header        Cache-Control private;
+  listen  80;
+  server_name cloud.ohmpieng.org;
+  root  /home/ohmpieng/www/cloud/;
+  location / {
+    index index.html index.php;
+    autoindex on;
+    location ~ \.php$ {
+      try_files      $uri = 404;
+      fastcgi_pass   127.0.0.1:9000;
+      fastcgi_index  index.php;
+      fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
+      include        fastcgi_params;
     }
-    error_page  404 /404.html;
-    error_page  403 /403.html;
-    access_log  /home/ohmpieng/logs/apps.nonmadden.org.access.log  combined;
+  }
+  error_page  404 /404.html;
+  error_page  403 /403.html;
+  access_log  /home/ohmpieng/logs/cloud.nonmadden.com.access.log  combined;
 }
 
 server {
-    listen  80;
-    server_name cloud.ohmpieng.org;
-    root  /home/ohmpieng/www/cloud/;
-    location / {
-        index index.html index.php;
-        location ~ \.php$ {
-            try_files      $uri = 404;
-            fastcgi_pass   127.0.0.1:9000;
-            fastcgi_index  index.php;
-            fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
-            include        fastcgi_params;
-        }
-        autoindex on;
+  listen  80;
+  server_name status.ohmpieng.org;
+  root  /home/ohmpieng/linux-dash/;
+  location / {
+    auth_basic "Administrator Login";
+    auth_basic_user_file /home/ohmpieng/linux-dash/.htpasswd;
+    index index.php index.html;
+    autoindex on;
+    location ~ \.php$ {
+      try_files      $uri = 404;
+      fastcgi_pass   127.0.0.1:9000;
+      fastcgi_index  index.php;
+      fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
+      include        fastcgi_params;
     }
-    error_page  404 /404.html;
-    error_page  403 /403.html;
-    access_log  /home/ohmpieng/logs/cloud.nonmadden.com.access.log  combined;
+  }
+  error_page  404 /404.html;
+  error_page  403 /403.html;
 }
-
-server {
-    listen  80;
-    server_name status.ohmpieng.org;
-    root  /home/ohmpieng/linux-dash/;
-    location / {
-        auth_basic "Administrator Login";
-        auth_basic_user_file /home/ohmpieng/linux-dash/.htpasswd;
-        index index.php index.html;
-        location ~ \.php$ {
-            try_files      $uri = 404;
-            fastcgi_pass   127.0.0.1:9000;
-            fastcgi_index  index.php;
-            fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
-            include        fastcgi_params;
-        }
-        autoindex on;
-    }
-    error_page  404 /404.html;
-    error_page  403 /403.html;
-}
-
-#server {
-#    listen  ctf.ohmpieng.org:1337;
-#    server_name ctf.ohmpieng.org;
-#    root  /Ohmpieng/ctf/;
-#    location / {
-#        index index.html index.php;
-#        location ~ \.php$ {
-#            try_files      $uri = 404;
-#            fastcgi_pass   127.0.0.1:9000;
-#            fastcgi_index  index.php;
-#            fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
-#            include        fastcgi_params;
-#        }
-#        autoindex on;
-#    }
-#    error_page  404 /404.html;
-#    error_page  403 /403.html;
-#    access_log  /Ohmpieng/logs/ctf.ohmpieng.org.access.log  combined;
-#}
