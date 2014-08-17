@@ -52,7 +52,9 @@ server {
 server {
   listen 80;
   server_name apps.ohmpieng.org;
-  root /home/production/current/;
+  passenger_enabled on;
+  rails_env production;
+  root /home/production/current/public;
   index index.html index.php;
   include php-fpm;
   access_log /home/ohmpieng/logs/apps.nonmadden.org.access.log combined;
