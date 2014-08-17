@@ -52,7 +52,7 @@ server {
 server {
   listen 80;
   server_name apps.ohmpieng.org;
-  root /home/ohmpieng/www/applications/;
+  root /home/production/current/;
   index index.html index.php;
   include php-fpm;
   access_log /home/ohmpieng/logs/apps.nonmadden.org.access.log combined;
