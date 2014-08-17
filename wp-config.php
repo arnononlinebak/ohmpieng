@@ -60,7 +60,7 @@ define('FS_METHOD', 'direct');
 * You can have multiple installations in one database if you give each a unique
 * prefix. Only numbers, letters, and underscores please!
 */
-$table_prefix = 'oppbg6_';
+$table_prefix = 'x7ttfmm_';
 
 /**
 * WordPress Localized Language, defaults to English.
@@ -89,4 +89,3 @@ define('ABSPATH', dirname(__FILE__) . '/');
 
 /** Sets up WordPress vars and included files. */
 require_once(ABSPATH . 'wp-settings.php');
-

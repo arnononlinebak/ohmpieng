@@ -1,22 +1,14 @@
 
 server {
-  listen  80;
-  server_name  128.199.255.103;
-  root  /home/ohmpieng/;
-  access_log  /home/ohmpieng/logs/default.access.log  combined;
-  include php-fpm;
-  index index.html index.php;
-}
-
-server {
   server_name ~^(.*)\.nonmadden\.com$ ;
   rewrite ^ http://get.nonmadden.com/ redirect;
 }
 
 server {
-  listen  80;
+  listen 80;
+  listen 443;
   server_name get.nonmadden.com;
-  root  /home/non/nonmadden/;
+  root  /home/non/www/;
   include php-fpm;
   index index.html index.php;
   location / {
