@@ -6,7 +6,7 @@ server {
 
 server {
   listen 80;
-  listen 443;
+  listen 443 ssl;
   server_name get.nonmadden.com;
   root  /home/non/www/;
   include php-fpm;

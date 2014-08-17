@@ -1,7 +1,7 @@
 
 server {
   listen  80;
-  listen  443;
+  listen  443 ssl;
   server_name ohmpieng.org www.ohmpieng.org;
   root  /home/ohmpieng/www/production/;
   index index.html index.php;
