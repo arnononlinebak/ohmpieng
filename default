@@ -7,12 +7,12 @@ ssl_certificate      /etc/nginx/ssl/server.crt;
 ssl_certificate_key  /etc/nginx/ssl/server.key;
 
 server {
-  listen  80;
-  server_name  128.199.255.103;
-  root  /home/ohmpieng/;
-  access_log  /home/ohmpieng/logs/default.access.log  combined;
-  include php-fpm;
+  listen 80;
+  server_name 128.199.255.103;
+  root /home/ohmpieng/;
   index index.html index.php;
+  include php-fpm;
+  access_log /home/ohmpieng/logs/default.access.log combined;
 }
 
 include /home/non/config/nonmadden;

@@ -9,27 +9,29 @@ server {
   listen 443 ssl;
   server_name get.nonmadden.com;
   root  /home/non/www/;
-  include php-fpm;
   index index.html index.php;
+  include php-fpm;
   access_log  /home/ohmpieng/logs/nonmadden.com.access.log  combined;
 
   location / {
     try_files $uri $uri/ /index.php?$args;
   }
+
   location = /favicon.ico {
     log_not_found off;
     access_log off;
   }
+
   location = /robots.txt {
     allow all;
     log_not_found off;
     access_log off;
   }
-  location ~* \.(ico|css|js|gif|jpe?g|png)(\?[0-9]+)?$ {
+
+    location ~* \.(ico|css|js|gif|jpe?g|png)(\?[0-9]+)?$ {
     expires max;
     log_not_found off;
   }
-
 
   # BEGIN iThemes Security
   # BEGIN Ban Users
