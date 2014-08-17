@@ -13,11 +13,11 @@ after 'deploy', 'deploy:reload'
 
 namespace :deploy do
   task :reload, roule: :app do
-    run '#{sudo} service nginx reload'
+    run 'sudo service nginx reload'
   end
 
   task :setup, roule: :app do
-    run "#{sudo} cp /home/non/config/php-fpm /etc/nginx/"
-    run '#{sudo} service nginx start'
+    run "sudo cp /home/non/config/php-fpm /etc/nginx/"
+    run 'sudo service nginx start'
   end
 end
