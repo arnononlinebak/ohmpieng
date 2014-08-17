@@ -52,6 +52,13 @@ define('LOGGED_IN_SALT', 'put your unique phrase here');
 define('NONCE_SALT', 'put your unique phrase here');
 
 define('FS_METHOD', 'direct');
+
+//The entries below were created by iThemes Security to enforce SSL
+define( 'FORCE_SSL_LOGIN', true );
+define( 'FORCE_SSL_ADMIN', true );
+//The entry below were created by iThemes Security to disable the file editor
+define( 'DISALLOW_FILE_EDIT', true );
+
 /**#@-*/
 
 /**
