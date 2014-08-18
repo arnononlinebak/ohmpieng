@@ -1,7 +1,7 @@
 server {
     listen 8080;
-    server_name localhost;
-    root /Users/non/ohmpieng/;
+    server_name 127.0.0.1;
+    root /Users/non/ohmpieng/workspace;
     access_log /Users/non/ohmpieng/logs/default.access.log main;
 
     location / {
@@ -9,10 +9,15 @@ server {
     }
 
     location = /info {
-        allow   127.0.0.1;
-        deny    all;
+        allow 127.0.0.1;
+        deny all;
         rewrite (.*) /.info.php;
     }
+    location /config { deny all; }
+    location /logic { deny all; }
+    location /non { deny all; }
+    location /www { deny all; }
+    location /production { deny all; }
 }
 
 server {
@@ -60,7 +65,7 @@ server {
 server {
     listen 8080;
     server_name apps.ohmpieng.local;
-    root /Users/non/ohmpieng/applications/;
+    root /Users/non/ohmpieng/www/applications/;
     client_max_body_size 100M;
     access_log /Users/non/ohmpieng/logs/apps.ohmpieng.org.access.log main;
 
@@ -72,9 +77,9 @@ server {
 
 server {
     listen 8080;
-    server_name cloud.ohmpieng.local;
-    root /Users/non/ohmpieng/cloud/;
-    access_log /Users/non/ohmpieng/logs/cloud.ohmpieng.org.access.log main;
+    server_name developers.ohmpieng.local;
+    root /Users/non/ohmpieng/www/developers/;
+    access_log /Users/non/ohmpieng/logs/developers.ohmpieng.org.access.log main;
 
     location / {
         include conf.d/php-fpm;
@@ -82,3 +87,14 @@ server {
     }
 }
 
+server {
+    listen 8080;
+    server_name cloud.ohmpieng.local;
+    root /Users/non/ohmpieng/www/cloud/;
+    access_log /Users/non/ohmpieng/logs/cloud.ohmpieng.org.access.log main;
+
+    location / {
+        include conf.d/php-fpm;
+        autoindex on;
+    }
+}
