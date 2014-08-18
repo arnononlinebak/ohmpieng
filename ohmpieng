@@ -51,7 +51,7 @@ server {
 
 server {
   listen 80;
-  server_name apps.ohmpieng.org;
+  server_name applications.ohmpieng.org;
   passenger_enabled on;
   rails_env production;
   root /home/production/current/public;
