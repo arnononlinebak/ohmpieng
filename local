@@ -1,0 +1,84 @@
+server {
+    listen 8080;
+    server_name localhost;
+    root /Users/non/ohmpieng/;
+    access_log /Users/non/ohmpieng/logs/default.access.log main;
+
+    location / {
+        include conf.d/php-fpm;
+    }
+
+    location = /info {
+        allow   127.0.0.1;
+        deny    all;
+        rewrite (.*) /.info.php;
+    }
+}
+
+server {
+    listen 8080;
+    server_name get.page365.local;
+    root /Users/non/softbaked/page365-landing/;
+    access_log /Users/non/ohmpieng/logs/page365.net.access.log main;
+
+    location / {
+        include conf.d/php-fpm;
+        autoindex on;
+    }
+}
+
+server {
+    listen 8080;
+    server_name get.nonmadden.local;
+    root /Users/non/ohmpieng/non/;
+    access_log /Users/non/ohmpieng/logs/nonmadden.com.access.log main;
+
+    location / {
+        include conf.d/php-fpm;
+        autoindex on;
+        try_files $uri $uri/ /index.php;
+    }
+
+    location ~* \.(ico|css|js|gif|jpe?g|png)(\?[0-9]+)?$ {
+        expires max;
+        log_not_found off;
+    }
+}
+
+server {
+    listen 8080;
+    server_name ohmpieng.local www.ohmpieng.local;
+    root /Users/non/ohmpieng/production/;
+    access_log /Users/non/ohmpieng/logs/ohmpieng.org.access.log main;
+
+    location / {
+        include conf.d/php-fpm;
+        autoindex on;
+    }
+}
+
+server {
+    listen 8080;
+    server_name apps.ohmpieng.local;
+    root /Users/non/ohmpieng/applications/;
+    client_max_body_size 100M;
+    access_log /Users/non/ohmpieng/logs/apps.ohmpieng.org.access.log main;
+
+    location / {
+        include conf.d/php-fpm;
+        autoindex on;
+    }
+}
+
+server {
+    listen 8080;
+    server_name cloud.ohmpieng.local;
+    root /Users/non/ohmpieng/cloud/;
+    access_log /Users/non/ohmpieng/logs/cloud.ohmpieng.org.access.log main;
+
+    location / {
+        include conf.d/php-fpm;
+        autoindex on;
+    }
+}
+
