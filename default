@@ -1,7 +1,7 @@
 autoindex off;
 
-error_page  404 /404.html;
-error_page  403 /403.html;
+error_page  404 /Users/non/ohmpieng/www/error;
+error_page  403 /Users/non/ohmpieng/www/error;
 
 ssl_certificate      /etc/nginx/ssl/server.crt;
 ssl_certificate_key  /etc/nginx/ssl/server.key;
