@@ -37,7 +37,7 @@ server {
   listen  80;
   listen 443 ssl;
   server_name status.ohmpieng.org;
-  root /home/ohmpieng/server/;
+  root /home/ohmpieng/www/server/;
   index index.html index.php;
   include php-fpm;
   autoindex on;
