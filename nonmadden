@@ -33,6 +33,9 @@ server {
     log_not_found off;
   }
 
+  ssl_certificate      /etc/nginx/ssl/nonmadden.crt;
+  ssl_certificate_key  /etc/nginx/ssl/nonmadden.key;
+
   # BEGIN iThemes Security
   # BEGIN Ban Users
   # Begin HackRepair.com Blacklist
