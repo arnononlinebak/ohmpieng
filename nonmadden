@@ -1,7 +1,7 @@
 
 server {
   server_name ~^(.*)\.nonmadden\.com$ nonmadden.com;
-  rewrite ^ http://get.nonmadden.com/ redirect;
+  rewrite ^ https://get.nonmadden.com/ redirect;
 }
 
 server {
