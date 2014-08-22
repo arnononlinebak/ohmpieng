@@ -98,3 +98,39 @@ server {
         autoindex on;
     }
 }
+
+server {
+  listen 443 ssl;
+  server_name project;
+  root /Users/non/ohmpieng/project/;
+  index index.html index.php;
+  include conf.d/php-fpm;
+  access_log /Users/non/ohmpieng/logs/ohmpieng.org.access.log combined;
+
+  location / {
+    try_files $uri $uri/ /index.php;
+  }
+
+  location /blog {
+    try_files $uri $uri/ /blog/index.php?$args;
+  }
+
+  location = /favicon.ico {
+    log_not_found off;
+    access_log off;
+  }
+
+  location = /robots.txt {
+    allow all;
+    log_not_found off;
+    access_log off;
+  }
+
+  location ~* \.(ico|css|js|gif|jpe?g|png)(\?[0-9]+)?$ {
+    expires max;
+    log_not_found off;
+  }
+
+  ssl_certificate      /usr/local/etc/nginx/ssl/localhost.crt;
+  ssl_certificate_key  /usr/local/etc/nginx/ssl/localhost.key;
+}
