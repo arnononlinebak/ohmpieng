@@ -9,7 +9,7 @@ server {
   root  /home/non/blog/;
   index index.html index.php;
   include php-fpm;
-  access_log  /home/ohmpieng/logs/nonmadden.com.access.log  combined;
+  access_log  /home/non/logs/nonmadden.com.access.log  combined;
 
   location / {
     try_files $uri $uri/ /index.php?$args;

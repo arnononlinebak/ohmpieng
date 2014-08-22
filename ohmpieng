@@ -6,7 +6,7 @@ server {
   root /home/ohmpieng/www/marketing/;
   index index.html index.php;
   include php-fpm;
-  access_log /home/ohmpieng/logs/ohmpieng.org.access.log combined;
+  access_log /home/non/logs/ohmpieng.org.access.log combined;
 
   location / {
     try_files $uri $uri/ /index.php;
@@ -44,7 +44,7 @@ server {
   index index.html index.php;
   include php-fpm;
   autoindex on;
-  access_log /home/ohmpieng/logs/statys.org.access.log combined;
+  access_log /home/non/logs/statys.org.access.log combined;
 
   location / {
     auth_basic "Administrator Login";
@@ -60,7 +60,7 @@ server {
   root /home/production/current/public;
   index index.html index.php;
   include php-fpm;
-  access_log /home/ohmpieng/logs/apps.nonmadden.org.access.log combined;
+  access_log /home/non/logs/apps.nonmadden.org.access.log combined;
 
   location / {
     access_log        off;
@@ -76,7 +76,7 @@ server {
   index index.html index.php;
   include php-fpm;
   autoindex on;
-  access_log /home/ohmpieng/logs/cloud.nonmadden.com.access.log combined;
+  access_log /home/non/logs/cloud.nonmadden.com.access.log combined;
 }
 
 server {
@@ -85,7 +85,7 @@ server {
   root  /home/ohmpieng/www/developers/;
   index index.html index.php;
   include php-fpm;
-  access_log /home/ohmpieng/logs/developers.ohmpieng.org.access.log combined;
+  access_log /home/non/logs/developers.ohmpieng.org.access.log combined;
 }
 
 server {
@@ -94,5 +94,5 @@ server {
   root  /home/ohmpieng/www/live/;
   index index.html index.php;
   include php-fpm;
-  access_log /home/ohmpieng/logs/live.ohmpieng.org.access.log combined;
+  access_log /home/non/logs/live.ohmpieng.org.access.log combined;
 }
