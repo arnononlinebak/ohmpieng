@@ -1,6 +1,6 @@
 
 server {
-  server_name ~^(.*)\.nonmadden\.com$ nonmadden.com;
+  server_name blog.nonmadden.com nonmadden.com;
   rewrite ^ https://blog.nonmadden.com/ redirect;
 }
 
@@ -237,8 +237,6 @@ server {
   }
   # END Tweaks # END iThemes Security
 }
-
-
 
 server {
   listen 443 ssl;
