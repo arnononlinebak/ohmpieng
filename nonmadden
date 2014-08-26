@@ -7,14 +7,20 @@ server {
 server {
   listen 443 ssl;
   server_name get.nonmadden.com;
-  root  /home/non/marketing/;
   index index.html index.php;
   include php-fpm;
   access_log  /home/non/logs/nonmadden.access.log  combined;
+  ssl_certificate  /etc/nginx/ssl/nonmadden.crt;
+  ssl_certificate_key  /etc/nginx/ssl/nonmadden.key;
+
+  location / {
+    root  /home/non/marketing/;
+    try_files $uri $uri/ /index.php;
+  }
 
   location /blog {
     root  /home/non/blog/;
-    try_files $uri $uri/ /index.php?$args;
+    try_files $uri $uri/ blog/index.php?$args;
   }
 
   location = /favicon.ico {
@@ -33,8 +39,6 @@ server {
     log_not_found off;
   }
 
-  ssl_certificate      /etc/nginx/ssl/nonmadden.crt;
-  ssl_certificate_key  /etc/nginx/ssl/nonmadden.key;
 
   # BEGIN iThemes Security
   # BEGIN Ban Users
