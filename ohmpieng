@@ -2,7 +2,7 @@
 
 server {
   server_name ohmpieng.org www.ohmpieng.org;
-  rewrite ^ https://get.ohmpieng.org/ redirect;
+  rewrite ^ http://get.ohmpieng.org/ redirect;
 }
 
 server {
