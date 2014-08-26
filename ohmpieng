@@ -9,7 +9,7 @@ server {
   listen 80;
   listen 443 ssl;
   server_name get.ohmpieng.org;
-  root /home/ohmpieng/www/marketing/;
+  root /home/ohmpieng/board/;
   index index.html index.php;
   include php-fpm;
   access_log /home/non/logs/ohmpieng.log combined;
