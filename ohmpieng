@@ -1,12 +1,18 @@
 
+
+server {
+  server_name ohmpieng.org www.ohmpieng.org;
+  rewrite ^ https://get.ohmpieng.org/ redirect;
+}
+
 server {
   listen 80;
   listen 443 ssl;
-  server_name ohmpieng.org www.ohmpieng.org;
+  server_name get.ohmpieng.org;
   root /home/ohmpieng/www/marketing/;
   index index.html index.php;
   include php-fpm;
-  access_log /home/non/logs/ohmpieng.org.access.log combined;
+  access_log /home/non/logs/ohmpieng.log combined;
 
   location / {
     try_files $uri $uri/ /index.php;
@@ -38,17 +44,16 @@ server {
 
 server {
   listen 80;
-  server_name applications.ohmpieng.org;
+  server_name apps.ohmpieng.org;
   passenger_enabled on;
   rails_env production;
   root /home/production/current/public;
-  index index.html index.php;
-  include php-fpm;
-  access_log /home/non/logs/apps.nonmadden.org.access.log combined;
+
+  access_log /home/non/logs/ohmpieng-application.log combined;
 
   location / {
-    access_log        off;
-    expires           0;
-    add_header        Cache-Control private;
+    access_log off;
+    expires 0;
+    add_header Cache-Control private;
   }
 }

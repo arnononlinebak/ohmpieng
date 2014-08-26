@@ -238,6 +238,13 @@ server {
   # END Tweaks # END iThemes Security
 }
 
+
+
+
+
+
+
+
 server {
   listen 443 ssl;
   server_name status.nonmadden.com;
@@ -245,7 +252,7 @@ server {
   index index.html index.php;
   include php-fpm;
   autoindex on;
-  access_log /home/non/logs/statys.org.access.log combined;
+  access_log /home/non/logs/nonmadden-status.log combined;
 
   location / {
     auth_basic "Administrator Login";
@@ -261,7 +268,23 @@ server {
   index index.html index.php;
   include php-fpm;
   autoindex on;
-  access_log /home/non/logs/cloud.nonmadden.com.access.log combined;
+  access_log /home/non/logs/nonmadden-cloud.log combined;
+}
+
+server {
+  listen 80;
+  server_name applications.nonmadden.com;
+  passenger_enabled on;
+  rails_env production;
+  root /home/production/current/public;
+
+  access_log /home/non/logs/nonmadden-apps.log combined;
+
+  location / {
+    access_log off;
+    expires 0;
+    add_header Cache-Control private;
+  }
 }
 
 server {
@@ -270,7 +293,7 @@ server {
   root  /home/non/www/developers/;
   index index.html index.php;
   include php-fpm;
-  access_log /home/non/logs/developers.ohmpieng.org.access.log combined;
+  access_log /home/non/logs/nonmadden-developers.log combined;
 }
 
 server {
@@ -280,5 +303,5 @@ server {
   root  /home/non/www/live/;
   index index.html index.php;
   include php-fpm;
-  access_log /home/non/logs/live.ohmpieng.org.access.log combined;
+  access_log /home/non/logs/nonmadden-live.log combined;
 }
