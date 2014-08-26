@@ -7,12 +7,13 @@ server {
 server {
   listen 443 ssl;
   server_name get.nonmadden.com;
-  root  /home/non/blog/;
+  root  /home/non/marketing/;
   index index.html index.php;
   include php-fpm;
   access_log  /home/non/logs/nonmadden.access.log  combined;
 
   location /blog {
+    root  /home/non/blog/;
     try_files $uri $uri/ /index.php?$args;
   }
 
