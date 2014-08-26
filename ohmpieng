@@ -1,26 +1,39 @@
 
 
 server {
-  server_name ohmpieng.org www.ohmpieng.org;
-  rewrite ^ http://get.ohmpieng.org/ redirect;
+  server_name ohmpieng.org;
+  rewrite ^ http://www.ohmpieng.org/ redirect;
 }
 
 server {
   listen 80;
   listen 443 ssl;
-  server_name get.ohmpieng.org;
+  server_name www.ohmpieng.org;
   root /home/non/board/;
   index index.html index.php;
   include php-fpm;
   access_log /home/non/logs/ohmpieng.log combined;
+  ssl_certificate      /etc/nginx/ssl/server.crt;
+  ssl_certificate_key  /etc/nginx/ssl/server.key;
 
   location / {
     try_files $uri $uri/ /index.php;
   }
 
-  location /blog {
-    try_files $uri $uri/ /blog/index.php?$args;
+  #location /blog {
+  #  try_files $uri $uri/ /blog/index.php?$args;
+  #}
+
+  location /application {
+    passenger_enabled on;
+    rails_env production;
+    root /home/production/current/public;
+    access_log off;
+    expires 0;
+    add_header Cache-Control private;
+    access_log /home/non/logs/ohmpieng-application.log combined;
   }
+
 
   location = /favicon.ico {
     log_not_found off;
@@ -36,24 +49,5 @@ server {
   location ~* \.(ico|css|js|gif|jpe?g|png)(\?[0-9]+)?$ {
     expires max;
     log_not_found off;
-  }
-
-  ssl_certificate      /etc/nginx/ssl/server.crt;
-  ssl_certificate_key  /etc/nginx/ssl/server.key;
-}
-
-server {
-  listen 80;
-  server_name apps.ohmpieng.org;
-  passenger_enabled on;
-  rails_env production;
-  root /home/production/current/public;
-
-  access_log /home/non/logs/ohmpieng-application.log combined;
-
-  location / {
-    access_log off;
-    expires 0;
-    add_header Cache-Control private;
   }
 }
