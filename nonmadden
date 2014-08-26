@@ -12,7 +12,7 @@ server {
   include php-fpm;
   access_log  /home/non/logs/nonmadden.access.log  combined;
 
-  location / {
+  location /blog {
     try_files $uri $uri/ /index.php?$args;
   }
 
