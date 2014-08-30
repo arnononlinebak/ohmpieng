@@ -102,10 +102,10 @@ server {
 server {
   listen 443 ssl;
   server_name project;
-  root /Users/non/ohmpieng/project/;
+  root /Users/non/ohmpieng/marketing;
   index index.html index.php;
   include conf.d/php-fpm;
-  access_log /Users/non/ohmpieng/logs/ohmpieng.org.access.log combined;
+  access_log /Users/non/ohmpieng/logs/project.access.log combined;
 
   location / {
     try_files $uri $uri/ /index.php;

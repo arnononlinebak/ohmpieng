@@ -19,7 +19,7 @@
 define('DB_NAME', 'NonMadden');
 
 /** MySQL database username */
-define('DB_USER', 'root');
+define('DB_USER', 'non');
 
 /** MySQL database password */
 define('DB_PASSWORD', ':vp.sh]n,F]d');
