@@ -1,16 +1,16 @@
 
 server {
-  server_name ohmpieng.org www.ohmpieng.org;
-  rewrite ^ http://app.ohmpieng.org/ redirect;
+  server_name www.ohmpieng.org;
+  rewrite ^ http://ohmpieng.org/ redirect;
 }
 
 server {
   listen 80 default_server;
   listen [::]:80 default_server ipv6only=on;
 
-  server_name app.ohmpieng.org;
+  server_name apps.ohmpieng.org;
   passenger_enabled on;
-  rails_env    staging; #production;
+  rails_env    production;
   root         /home/non/ohmpieng/project/production/current/public;
 
   # redirect server error pages to the static page /50x.html

@@ -1,34 +1,35 @@
 
-server {
-  server_name blog.nonmadden.com nonmadden.com www.nonmadden.com;
-  rewrite ^ https://get.nonmadden.com/ redirect;
-}
+#server {
+#  server_name blog.nonmadden.com nonmadden.com www.nonmadden.com;
+#  rewrite ^ https://get.nonmadden.com/ redirect;
+#}
 
-server {
-  listen 443 ssl;
-  server_name status.nonmadden.com;
-  root /home/non/www/server/;
-  index index.html index.php;
-  include php-fpm;
-  autoindex on;
-  access_log /home/non/logs/nonmadden-status.log combined;
+#server {
+#  listen 443 ssl;
+#  server_name status.nonmadden.com;
+#  root /home/non/www/server/;
+#  index index.html index.php;
+#  include php-fpm;
+#  autoindex on;
+#  access_log /home/non/logs/nonmadden-status.log combined;
 
-  location / {
-    auth_basic "Administrator Login";
-    auth_basic_user_file /home/non/www/server/.htpasswd;
-  }
-}
+#  location / {
+#    auth_basic "Administrator Login";
+#    auth_basic_user_file /home/non/www/server/.htpasswd;
+#  }
+#}
 
-server {
-  listen  80;
-  listen 443 ssl;
-  server_name cloud.nonmadden.com;
-  root  /home/non/www/cloud/;
-  index index.html index.php;
-  include php-fpm;
-  autoindex on;
-  access_log /home/non/logs/nonmadden-cloud.log combined;
-}
+#server {
+#  listen  80;
+#  listen 443 ssl;
+#  server_name cloud.nonmadden.com;
+#  root  /home/non/www/cloud/;
+#  index index.html index.php;
+#  include php-fpm;
+#  autoindex on;
+#  access_log /home/non/logs/nonmadden-cloud.log combined;
+#}
+
 #server {
 #  listen 80;
 #  server_name applications.nonmadden.com;
@@ -61,7 +62,6 @@ server {
 #  include php-fpm;
 #  access_log /home/non/logs/nonmadden-live.log combined;
 #}
-
 
 server {
   listen 443 ssl;
