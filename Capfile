@@ -16,7 +16,9 @@ namespace :deploy do
   end
 
   task :setup, roule: :app do
-    run "sudo cp /var/config/config/php-fpm /etc/nginx/"
+  	run "sudo rm -rf /etc/nginx/sites-enabled/default"
+  	run "sudo ln -s /var/config/default /etc/nginx/sites-enabled/default"
+    run "sudo cp /var/config/php-fpm /etc/nginx/"
     run 'sudo service nginx start'
   end
 end

@@ -1,6 +1,6 @@
 
 server {
-  server_name ohmpieng.org;
+  server_name ohmpieng.org www.ohmpieng.org;
   rewrite ^ http://app.ohmpieng.org/ redirect;
 }
 
