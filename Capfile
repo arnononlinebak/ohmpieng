@@ -2,10 +2,10 @@ require 'recap/recipes/static'
 
 set :deploy_to, "/var/config"
 server 'ohmpieng.org', :app
-set :user, 'root'
+set :user, 'non'
 set :use_sudo, true
 set :application, "config"
-set :application_user, 'root'
+set :application_user, 'non'
 set :repository,  "git@bitbucket.org:nonmadden/config.git"
 
 after 'deploy', 'deploy:reload'
