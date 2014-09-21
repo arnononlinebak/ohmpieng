@@ -6,7 +6,7 @@ set :user, 'root'
 set :use_sudo, true
 set :application, "config"
 set :application_user, 'root'
-set :repository,  "git@bitbucket.org:arnononline/config.git"
+set :repository,  "git@bitbucket.org:nonmadden/config.git"
 
 after 'deploy', 'deploy:reload'
 

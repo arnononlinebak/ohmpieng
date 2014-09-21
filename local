@@ -1,72 +1,84 @@
+
 server {
-    listen 8080;
-    server_name 127.0.0.1;
-    root /Users/non/ohmpieng/workspace;
-    access_log /Users/non/ohmpieng/logs/default.access.log main;
-
-    location / {
-        include conf.d/php-fpm;
-    }
-
-    location = /info {
-        allow 127.0.0.1;
-        deny all;
-        rewrite (.*) /.info.php;
-    }
-    location /config { deny all; }
-    location /logic { deny all; }
-    location /non { deny all; }
-    location /www { deny all; }
-    location /production { deny all; }
+  listen 80;
+  server_name dev.page365.net;
+  root /Users/non/softbaked/page365-landing/;
+  access_log /Users/non/ohmpieng/logs/page365.net.access.log main;
+  index index.php;
+  location = /favicon.ico {
+    log_not_found off;
+    access_log off;
+  }
+  location = /robots.txt {
+    allow all;
+    log_not_found off;
+    access_log off;
+  }
+  location / {
+    include conf.d/php-fpm;
+    autoindex on;
+    try_files $uri $uri/ /index.php?$args;
+  }
+  location ~ ^/assets/(images|js|css|fonts)/(.*)$ {
+    try_files $uri $uri/ /wp-content/themes/page365/assets/$1/$2;
+  }
+  location ~ ^/plugins/(.*)$ {
+    try_files $uri $uri/ /wp-content/plugins/$1;
+  }
 }
 
 server {
-    listen 8080;
-    server_name get.page365.local;
-    root /Users/non/softbaked/page365-landing/;
-    access_log /Users/non/ohmpieng/logs/page365.net.access.log main;
+  listen 80;
+  server_name workspace;
+  root /Users/non/ohmpieng/workspace;
+  access_log /Users/non/ohmpieng/logs/default.access.log main;
+  location / {
+      include conf.d/php-fpm;
+  }
+  location = /info {
+      allow 127.0.0.1;
+      deny all;
+      rewrite (.*) /.info.php;
+  }
+  location /config { deny all; }
+  location /logic { deny all; }
+  location /non { deny all; }
+  location /www { deny all; }
+  location /production { deny all; }
+}
 
-    location / {
-        include conf.d/php-fpm;
-        autoindex on;
-    }
+
+server {
+  listen 80;
+  server_name dev.nonmadden.com;
+  root /Users/non/ohmpieng/non/;
+  access_log /Users/non/ohmpieng/logs/nonmadden.com.access.log main;
+  location / {
+    include conf.d/php-fpm;
+    autoindex on;
+    try_files $uri $uri/ /index.php;
+  }
+  location ~* \.(ico|css|js|gif|jpe?g|png)(\?[0-9]+)?$ {
+    expires max;
+    log_not_found off;
+  }
 }
 
 server {
-    listen 8080;
-    server_name get.nonmadden.local;
-    root /Users/non/ohmpieng/non/;
-    access_log /Users/non/ohmpieng/logs/nonmadden.com.access.log main;
-
-    location / {
-        include conf.d/php-fpm;
-        autoindex on;
-        try_files $uri $uri/ /index.php;
-    }
-
-    location ~* \.(ico|css|js|gif|jpe?g|png)(\?[0-9]+)?$ {
-        expires max;
-        log_not_found off;
-    }
-}
-
-server {
-    listen 8080;
-    server_name ohmpieng.local www.ohmpieng.local;
-    root /Users/non/ohmpieng/project/marketing/;
-    access_log /Users/non/ohmpieng/logs/marketing.log main;
-    index index.html index.php;
-
-    location / {
-        include conf.d/php-fpm;
-        autoindex on;
-        try_files $uri $uri/ /index.php;
-    }
-
-    location ~* \.(ico|css|js|gif|jpe?g|png)(\?[0-9]+)?$ {
-        expires max;
-        log_not_found off;
-    }
+  listen 80;
+  server_name dev.ohmpieng.org;
+  root /Users/non/ohmpieng/project/marketing/;
+  access_log /Users/non/ohmpieng/logs/marketing.log main;
+  index index.html index.php;
+  location / {
+    include conf.d/php-fpm;
+    autoindex on;
+    try_files $uri $uri/ /index.php;
+  }
+  location ~* \.(ico|css|js|gif|jpe?g|png)(\?[0-9]+)?$ {
+    expires max;
+    log_not_found off;
+  }
 }
 
 server {
@@ -95,15 +107,15 @@ server {
 }
 
 server {
-    listen 8080;
-    server_name cloud.ohmpieng.local;
-    root /Users/non/ohmpieng/www/cloud/;
-    access_log /Users/non/ohmpieng/logs/cloud.ohmpieng.org.access.log main;
+  listen 8080;
+  server_name cloud.ohmpieng.local;
+  root /Users/non/ohmpieng/www/cloud/;
+  access_log /Users/non/ohmpieng/logs/cloud.ohmpieng.org.access.log main;
 
-    location / {
-        include conf.d/php-fpm;
-        autoindex on;
-    }
+  location / {
+    include conf.d/php-fpm;
+    autoindex on;
+  }
 }
 
 server {
