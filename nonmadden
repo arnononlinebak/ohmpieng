@@ -44,7 +44,7 @@ server {
   root  /home/non/ohmpieng/blog/;
   index index.html index.php;
   include /var/config/php-fpm;
-  access_log  /var/log/nginx/nonmadden.log  combined;
+  access_log /home/non/logs/nginx/nonmadden.log  combined;
 
   location / {
     try_files $uri $uri/ /index.php?$args;
