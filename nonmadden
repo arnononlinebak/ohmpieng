@@ -1,9 +1,3 @@
-
-#server {
-#  server_name blog.nonmadden.com nonmadden.com www.nonmadden.com;
-#  rewrite ^ https://get.nonmadden.com/ redirect;
-#}
-
 #server {
 #  listen 443 ssl;
 #  server_name status.nonmadden.com;
@@ -64,9 +58,14 @@
 #}
 
 server {
+  server_name blog.nonmadden.com nonmadden.com nonmadden.com;
+  rewrite ^ https://www.nonmadden.com/ redirect;
+}
+
+server {
   listen 80;
-  server_name blog.nonmadden.com;
-  root  /var/www/blog/;
+  server_name www.nonmadden.com;
+  root  /home/non/ohmpieng/blog/;
   index index.html index.php;
   include php-fpm;
   access_log  /var/log/nginx/ohmpieng_access.log  combined;
