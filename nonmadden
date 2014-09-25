@@ -39,7 +39,7 @@ server {
 }
 
 server {
-  listen 80;
+  listen 443 ssl;
   server_name www.nonmadden.com;
   root  /home/non/ohmpieng/blog/;
   index index.html index.php;
@@ -66,8 +66,8 @@ server {
     log_not_found off;
   }
 
-  # ssl_certificate      /etc/nginx/ssl/nonmadden.crt;
-  # ssl_certificate_key  /etc/nginx/ssl/nonmadden.key;
+  ssl_certificate      /var/config/certificate/localhost.crt;
+  ssl_certificate_key  /var/config/certificate/localhost.key;
 
   # BEGIN iThemes Security
   # BEGIN Ban Users
