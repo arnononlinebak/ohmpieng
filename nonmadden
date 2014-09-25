@@ -39,6 +39,7 @@ server {
 }
 
 server {
+  listen 80;
   listen 443 ssl;
   server_name www.nonmadden.com;
   root  /home/non/ohmpieng/blog/;
