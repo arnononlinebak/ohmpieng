@@ -1,5 +1,5 @@
 server {
-  listen 443 ssl;
+  listen 80;
   server_name status.nonmadden.com;
   root /home/non/ohmpieng/www/server/;
   index index.html index.php;
@@ -14,7 +14,6 @@ server {
 
 server {
   listen 80;
-  listen 443 ssl;
   server_name live.nonmadden.com;
   root  /home/non/ohmpieng/www/live/;
   index index.html index.php;
@@ -24,7 +23,6 @@ server {
 
 server {
   listen 80;
-  listen 443 ssl;
   server_name cloud.nonmadden.com;
   root  /home/non/ohmpieng/www/cloud/;
   index index.html index.php;
