@@ -6,10 +6,10 @@ error_page  403 /Users/non/ohmpieng/www/error;
 server {
   listen 80;
   server_name 128.199.255.103;
-  root /home/ohmpieng/;
+  root  /home/non/ohmpieng/www/error/;
   index index.html index.php;
-  include php-fpm;
-  access_log /home/non/logs/default.access.log combined;
+  include /var/config/php-fpm;
+  access_log /home/non/logs/128.199.255.103.log combined;
 }
 
 include /var/config/nonmadden;

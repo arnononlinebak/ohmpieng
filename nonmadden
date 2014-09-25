@@ -13,7 +13,7 @@ server {
 }
 
 server {
-  listen  80;
+  listen 80;
   listen 443 ssl;
   server_name live.nonmadden.com;
   root  /home/non/ohmpieng/www/live/;
@@ -23,7 +23,7 @@ server {
 }
 
 server {
-  listen  80;
+  listen 80;
   listen 443 ssl;
   server_name cloud.nonmadden.com;
   root  /home/non/ohmpieng/www/cloud/;
