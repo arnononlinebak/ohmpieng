@@ -66,6 +66,7 @@ server {
     log_not_found off;
   }
 
+  ssl on;
   ssl_certificate      /var/config/certificate/localhost.crt;
   ssl_certificate_key  /var/config/certificate/localhost.key;
 
