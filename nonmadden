@@ -64,7 +64,7 @@
 #}
 
 server {
-  listen 443 ssl;
+  listen 80;
   server_name blog.nonmadden.com;
   root  /var/www/blog/;
   index index.html index.php;

@@ -1,6 +1,6 @@
 
 server {
-  listen 8080;
+  listen 80;
   server_name dev.page365.net;
   root /Users/non/softbaked/page365-landing/;
   access_log /Users/non/ohmpieng/logs/page365.net.access.log main;
