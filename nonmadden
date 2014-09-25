@@ -3,7 +3,7 @@ server {
   server_name status.nonmadden.com;
   root /home/non/ohmpieng/www/server/;
   index index.html index.php;
-  include php-fpm;
+  include /var/config/php-fpm;
   autoindex on;
   access_log /home/non/logs/nonmadden-status.log combined;
   location / {
@@ -18,7 +18,7 @@ server {
   server_name live.nonmadden.com;
   root  /home/non/ohmpieng/www/live/;
   index index.html index.php;
-  include php-fpm;
+  include /var/config/php-fpm;
   access_log /home/non/logs/nonmadden-live.log combined;
 }
 
@@ -28,7 +28,7 @@ server {
   server_name cloud.nonmadden.com;
   root  /home/non/ohmpieng/www/cloud/;
   index index.html index.php;
-  include php-fpm;
+  include /var/config/php-fpm;
   autoindex on;
   access_log /home/non/logs/nonmadden-cloud.log combined;
 }
@@ -43,7 +43,7 @@ server {
   server_name www.nonmadden.com;
   root  /home/non/ohmpieng/blog/;
   index index.html index.php;
-  include php-fpm;
+  include /var/config/php-fpm;
   access_log  /var/log/nginx/nonmadden.log  combined;
 
   location / {
