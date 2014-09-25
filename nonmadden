@@ -5,7 +5,7 @@ server {
   index index.html index.php;
   include /var/config/php-fpm;
   autoindex on;
-  access_log /home/non/logs/nonmadden-status.log combined;
+  access_log /home/non/ohmpieng/logs/nonmadden-status.log combined;
   location / {
     auth_basic "Administrator Login";
     auth_basic_user_file /home/non/www/server/.htpasswd;
@@ -19,7 +19,7 @@ server {
   root  /home/non/ohmpieng/www/live/;
   index index.html index.php;
   include /var/config/php-fpm;
-  access_log /home/non/logs/nonmadden-live.log combined;
+  access_log /home/non/ohmpieng/logs/nonmadden-live.log combined;
 }
 
 server {
@@ -30,11 +30,11 @@ server {
   index index.html index.php;
   include /var/config/php-fpm;
   autoindex on;
-  access_log /home/non/logs/nonmadden-cloud.log combined;
+  access_log /home/non/ohmpieng/logs/nonmadden-cloud.log combined;
 }
 
 server {
-  server_name blog.nonmadden.com nonmadden.com nonmadden.com;
+  server_name blog.nonmadden.com nonmadden.com;
   rewrite ^ https://www.nonmadden.com/ redirect;
 }
 
@@ -44,7 +44,7 @@ server {
   root  /home/non/ohmpieng/blog/;
   index index.html index.php;
   include /var/config/php-fpm;
-  access_log /home/non/logs/nonmadden.log  combined;
+  access_log /home/non/ohmpieng/logs/nonmadden.log  combined;
 
   location / {
     try_files $uri $uri/ /index.php?$args;

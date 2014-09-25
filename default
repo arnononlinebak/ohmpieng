@@ -9,7 +9,7 @@ server {
   root  /home/non/ohmpieng/www/error/;
   index index.html index.php;
   include /var/config/php-fpm;
-  access_log /home/non/logs/128.199.255.103.log combined;
+  access_log /home/non/ohmpieng/logs/128.199.255.103.log combined;
 }
 
 include /var/config/nonmadden;
