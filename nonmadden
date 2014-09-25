@@ -1,61 +1,37 @@
-#server {
-#  listen 443 ssl;
-#  server_name status.nonmadden.com;
-#  root /home/non/www/server/;
-#  index index.html index.php;
-#  include php-fpm;
-#  autoindex on;
-#  access_log /home/non/logs/nonmadden-status.log combined;
+server {
+  listen 443 ssl;
+  server_name status.nonmadden.com;
+  root /home/non/ohmpieng/www/server/;
+  index index.html index.php;
+  include php-fpm;
+  autoindex on;
+  access_log /home/non/logs/nonmadden-status.log combined;
+  location / {
+    auth_basic "Administrator Login";
+    auth_basic_user_file /home/non/www/server/.htpasswd;
+  }
+}
 
-#  location / {
-#    auth_basic "Administrator Login";
-#    auth_basic_user_file /home/non/www/server/.htpasswd;
-#  }
-#}
+server {
+  listen  80;
+  listen 443 ssl;
+  server_name live.nonmadden.com;
+  root  /home/non/ohmpieng/www/live/;
+  index index.html index.php;
+  include php-fpm;
+  access_log /home/non/logs/nonmadden-live.log combined;
+}
 
-#server {
-#  listen  80;
-#  listen 443 ssl;
-#  server_name cloud.nonmadden.com;
-#  root  /home/non/www/cloud/;
-#  index index.html index.php;
-#  include php-fpm;
-#  autoindex on;
-#  access_log /home/non/logs/nonmadden-cloud.log combined;
-#}
-
-#server {
-#  listen 80;
-#  server_name applications.nonmadden.com;
-#  passenger_enabled on;
-#  rails_env production;
-#  root /home/production/current/public;
-#
-#  access_log /home/non/logs/nonmadden-apps.log combined;
-#
-#  location / {
-#    access_log off;
-#    expires 0;
-#    add_header Cache-Control private;
-#  }
-#}
-#server {
-#  listen  80;
-#  server_name developers.nonmadden.com;
-#  root  /home/non/www/developers/;
-#  index index.html index.php;
-#  include php-fpm;
-#  access_log /home/non/logs/nonmadden-developers.log combined;
-#}
-#server {
-#  listen  80;
-#  listen 443 ssl;
-#  server_name live.nonmadden.com;
-#  root  /home/non/www/live/;
-#  index index.html index.php;
-#  include php-fpm;
-#  access_log /home/non/logs/nonmadden-live.log combined;
-#}
+server {
+  listen  80;
+  listen 443 ssl;
+  server_name cloud.nonmadden.com;
+  root  /home/non/ohmpieng/www/cloud/;
+  index index.html index.php;
+  include php-fpm;
+  autoindex on;
+  access_log /home/non/logs/nonmadden-cloud.log combined;
+}
 
 server {
   server_name blog.nonmadden.com nonmadden.com nonmadden.com;
@@ -68,7 +44,7 @@ server {
   root  /home/non/ohmpieng/blog/;
   index index.html index.php;
   include php-fpm;
-  access_log  /var/log/nginx/ohmpieng_access.log  combined;
+  access_log  /var/log/nginx/nonmadden.log  combined;
 
   location / {
     try_files $uri $uri/ /index.php?$args;
@@ -96,6 +72,7 @@ server {
   # BEGIN iThemes Security
   # BEGIN Ban Users
   # Begin HackRepair.com Blacklist
+
   if ($http_user_agent ~* "^$"){return 403;}
   if ($http_user_agent ~* "^[Ww]eb[Bb]andit"){return 403;}
   if ($http_user_agent ~* "^Acunetix"){return 403;}
