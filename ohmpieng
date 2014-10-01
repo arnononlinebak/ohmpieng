@@ -12,7 +12,7 @@ server {
 
   location / {
     include     /var/config/php-fpm;
-    root        /home/non/ohmpieng/project/production/current/marketing;
+    root        /home/non/ohmpieng/project/marketing;
     try_files $uri $uri/ /index.php;
   }
   location /admin {
