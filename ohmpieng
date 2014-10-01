@@ -11,7 +11,7 @@ server {
   server_name ohmpieng.org;
 
   location / {
-    include conf.d/php-fpm;
+    include /var/config/php-fpm;
     autoindex on;
     try_files $uri $uri/ /index.php;
   }
