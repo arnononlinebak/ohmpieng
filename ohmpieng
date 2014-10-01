@@ -8,10 +8,18 @@ server {
   listen 80 default_server;
   listen [::]:80 default_server ipv6only=on;
 
-  server_name apps.ohmpieng.org;
-  passenger_enabled on;
-  rails_env    production;
-  root         /home/non/ohmpieng/project/production/current/public;
+  server_name ohmpieng.org;
+
+  location / {
+    include conf.d/php-fpm;
+    autoindex on;
+    try_files $uri $uri/ /index.php;
+  }
+  location /admin {
+    passenger_enabled on;
+    rails_env    production;
+    root         /home/non/ohmpieng/project/production/current/public;
+  }
 
   # redirect server error pages to the static page /50x.html
   error_page   500 502 503 504  /50x.html;
