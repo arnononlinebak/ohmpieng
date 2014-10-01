@@ -11,8 +11,8 @@ server {
   server_name ohmpieng.org;
 
   location / {
-    include /var/config/php-fpm;
-    autoindex on;
+    include     /var/config/php-fpm;
+    root        /home/non/ohmpieng/project/production/current/public;
     try_files $uri $uri/ /index.php;
   }
   location /admin {
