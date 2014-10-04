@@ -14,5 +14,4 @@ server {
 
   access_log /home/non/ohmpieng/logs/ohmpieng_access.log combined;
   error_log /home/non/ohmpieng/logs/ohmpieng_errors.log;
-  error_page   500 502 503 504  /500.html;
 }
