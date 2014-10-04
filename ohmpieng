@@ -14,11 +14,9 @@ server {
   #  try_files $uri $uri/ /index.php;
   #}
 
-  #location /admin {
-    passenger_enabled on;
-    root         /home/non/ohmpieng/project/production/current/public;
-    rails_env    production;
-  #}
+  passenger_enabled on;
+  root         /home/non/ohmpieng/project/production/current/public;
+  #rails_env    production;
 
   error_page   500 502 503 504  /500.html;
 }
