@@ -14,11 +14,13 @@ server {
     try_files $uri $uri/ /index.php;
   }
 
-  location /
+  location /admin {
     passenger_enabled on;
     root         /home/non/ohmpieng/project/production/current/public;
     #rails_env    staging;
   }
 
+  access_log /home/non/ohmpieng/logs/ohmpieng_access.log combined;
+  error_log /home/non/ohmpieng/logs/ohmpieng_errors.log combined;
   #error_page   500 502 503 504  /500.html;
 }
