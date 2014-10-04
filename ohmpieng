@@ -8,9 +8,9 @@ server {
   listen 80;
   server_name ohmpieng.org;
 
-    passenger_enabled on;
-    root         /home/non/ohmpieng/project/production/current/public;
-    #rails_env    staging;
+  passenger_enabled on;
+  root         /home/non/ohmpieng/project/production/current/public;
+  rails_env    production;
 
   access_log /home/non/ohmpieng/logs/ohmpieng_access.log combined;
   error_log /home/non/ohmpieng/logs/ohmpieng_errors.log;
