@@ -9,6 +9,7 @@ server {
   server_name ohmpieng.org;
 
   passenger_enabled on;
+  passenger_max_request_time 10;
   root         /home/non/ohmpieng/project/production/current/public;
   rails_env    production;
 
