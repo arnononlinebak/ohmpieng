@@ -5,25 +5,20 @@ server {
 }
 
 server {
-  listen 80 default_server;
-  listen [::]:80 default_server ipv6only=on;
-
+  listen 80;
   server_name ohmpieng.org;
 
-  location / {
-    include     /var/config/php-fpm;
-    root        /home/non/ohmpieng/project/marketing;
-    try_files $uri $uri/ /index.php;
-  }
-  location /admin {
-    passenger_enabled on;
-    rails_env    production;
-    root         /home/non/ohmpieng/project/production/current/public;
-  }
+  #location / {
+  #  include     /var/config/php-fpm;
+  #  root        /home/non/ohmpieng/project/marketing;
+  #  try_files $uri $uri/ /index.php;
+  #}
 
-  # redirect server error pages to the static page /50x.html
-  error_page   500 502 503 504  /50x.html;
-  location = /50x.html {
-    root   html;
-  }
+  #location /admin {
+    passenger_enabled on;
+    root         /home/non/ohmpieng/project/production/current/public;
+    rails_env    production;
+  #}
+
+  error_page   500 502 503 504  /500.html;
 }
