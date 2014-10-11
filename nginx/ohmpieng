@@ -9,17 +9,6 @@ server {
   listen 443 ssl;
   server_name ohmpieng.org;
 
-  location / {
-    include     /var/config/libs/php-fpm;
-    root        /home/non/ohmpieng/project/marketing;
-    try_files   $uri $uri/ /index.php;
-  }
-  location /apps {
-    passenger_enabled on;
-    root         /home/non/ohmpieng/project/production/current/public;
-    rails_env    development;
-  }
-
   ssl on;
   ssl_certificate      /var/config/certificate/cert.crt;
   ssl_certificate_key  /var/config/certificate/cert.key;
@@ -44,11 +33,21 @@ server {
   ssl_trusted_certificate /var/config/certificate/cert.crt;
   #ssl_dhparam             /opt/nginx/ssl/dhparam.pem;
 
+  location / {
+    include     /var/config/libs/php-fpm;
+    root        /home/non/ohmpieng/project/marketing;
+    try_files   $uri $uri/ /index.php;
+  }
+  location /apps {
+    passenger_enabled on;
+    root         /home/non/ohmpieng/project/production/current/public;
+    rails_env    development;
+    error_page 404 /404.html;
+    error_page 500 /500.html;
+    error_page 502 /502.html;
+    error_page 504 /504.html;
+  }
 
-  error_page 404 /404.html;
-  error_page 500 /500.html;
-  error_page 502 /502.html;
-  error_page 504 /504.html;
   access_log /home/non/ohmpieng/logs/ohmpieng_access.log combined;
   error_log /home/non/ohmpieng/logs/ohmpieng_errors.log;
 }
