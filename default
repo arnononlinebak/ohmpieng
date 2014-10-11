@@ -5,7 +5,7 @@ passenger_ruby /home/non/.rbenv/shims/ruby;
 passenger_max_pool_size 15;
 passenger_pool_idle_time 3600;
 
-include mime.types;
+include libs/mime.types;
 default_type application/octet-stream;
 
 autoindex off;
@@ -38,7 +38,7 @@ server {
   server_name 128.199.255.103;
   root  /home/non/ohmpieng/www/error/;
   index index.html index.php;
-  include /var/config/php-fpm;
+  include /var/config/libs/php-fpm;
   access_log /home/non/ohmpieng/logs/128.199.255.103.log combined;
 }
 
