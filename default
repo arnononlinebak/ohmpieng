@@ -42,8 +42,8 @@ server {
   access_log /home/non/ohmpieng/logs/128.199.255.103.log combined;
 }
 
-include /var/config/nonmadden;
-include /var/config/ohmpieng;
+include /var/config/nginx/nonmadden;
+include /var/config/nginx/ohmpieng;
 
 # You may add here your
 # server {
