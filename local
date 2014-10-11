@@ -7,9 +7,9 @@ server {
       include conf.d/php-fpm;
   }
   location = /info {
-      allow 127.0.0.1;
-      deny all;
-      rewrite (.*) /.info.php;
+    allow 127.0.0.1;
+    deny all;
+    rewrite (.*) /.info.php;
   }
   location /config { deny all; }
   location /logic { deny all; }
@@ -21,7 +21,7 @@ server {
 server {
   listen 80;
   server_name dev.page365.net;
-  root /Users/non/softbaked/page365-landing/;
+  root /Users/non/Repositories/page365-landing/;
   access_log /Users/non/Repositories/logs/page365.net.access.log main;
   index index.php;
   location = /favicon.ico {
