@@ -1,0 +1,24 @@
+
+server {
+  server_name www.ohmpieng.org get.ohmpieng.org;
+  rewrite ^ http://ohmpieng.org/ redirect;
+}
+
+server {
+  listen 80;
+  server_name ohmpieng.org;
+
+  location / {
+    include     /var/config/libs/php-fpm;
+    root        /home/non/ohmpieng/project/marketing;
+    try_files   $uri $uri/ /index.php;
+  }
+  location /apps {
+    passenger_enabled on;
+    root         /home/non/ohmpieng/project/production/current/public;
+    rails_env    development;
+  }
+
+  access_log /home/non/ohmpieng/logs/ohmpieng_access.log combined;
+  error_log /home/non/ohmpieng/logs/ohmpieng_errors.log;
+}
