@@ -12,13 +12,14 @@ after 'deploy', 'deploy:reload'
 
 namespace :deploy do
   task :reload, roule: :app do
+    run "sudo nginx -t"
     run 'sudo service nginx reload'
   end
 
   task :setup, roule: :app do
   	run "sudo rm -rf /etc/nginx/sites-enabled/default"
   	run "sudo ln -s /var/config/default /etc/nginx/sites-enabled/default"
-    run "sudo nginx -t"
+
     run "sudo service nginx start"
   end
 end
