@@ -87,6 +87,6 @@ server {
     expires max;
     log_not_found off;
   }
-  ssl_certificate      /Users/non/Repositories/config/certificate/localhost.crt;
-  ssl_certificate_key  /Users/non/Repositories/config/certificate/localhost.key;
+  ssl_certificate      /Users/non/Repositories/configure/certificate/localhost.crt;
+  ssl_certificate_key  /Users/non/Repositories/configure/certificate/localhost.key;
 }
