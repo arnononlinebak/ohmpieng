@@ -30,8 +30,3 @@ server {
   autoindex on;
   access_log /home/non/ohmpieng/logs/nonmadden-cloud.log combined;
 }
-
-server {
-  server_name blog.nonmadden.com nonmadden.com;
-  rewrite ^ https://www.nonmadden.com/ redirect;
-}
