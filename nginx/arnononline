@@ -1,0 +1,9 @@
+
+server {
+  listen 80;
+  server_name arnononline.me www.arnononline.me;
+  root  /home/non/ohmpieng/www/arnononline/;
+  index index.html index.php;
+  include /var/config/libs/php-fpm;
+  access_log /home/non/ohmpieng/logs/arnononline.log combined;
+}

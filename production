@@ -44,6 +44,7 @@ server {
 
 include /var/config/nginx/nonmadden;
 include /var/config/nginx/ohmpieng;
+include /var/config/nginx/arnononline;
 
 # You may add here your
 # server {
