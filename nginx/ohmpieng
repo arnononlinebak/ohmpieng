@@ -31,7 +31,7 @@ server {
   ssl_stapling            on;
   ssl_stapling_verify     on;
   ssl_trusted_certificate /var/config/certificate/cert.crt;
-  $ssl_dhparam             /opt/nginx/ssl/dhparam.pem;
+  #ssl_dhparam             /opt/nginx/ssl/dhparam.pem;
 
   location / {
     include     /var/config/libs/php-fpm;
