@@ -74,8 +74,8 @@ server {
   }
 
   #ssl on;
-  #ssl_certificate      /var/config/certificate/localhost.crt;
-  #ssl_certificate_key  /var/config/certificate/localhost.key;
+  #ssl_certificate      /var/config/certificate/cert.crt;
+  #ssl_certificate_key  /var/config/certificate/cert.key;
 
   # BEGIN iThemes Security
 
