@@ -6,7 +6,7 @@ set :user, 'non'
 set :use_sudo, true
 set :application, "config"
 set :application_user, 'non'
-set :repository,  "https://arnononline:f537b1ff0bd7298dee49257f4c8de1191207d8b8@github.com/arnononline/ohmpieng.git"
+set :repository,  "https://nonmadden:Arnon007@github.com/nonmadden/ohmpieng.git"
 
 after 'deploy', 'deploy:reload'
 
